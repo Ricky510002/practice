@@ -1,19 +1,12 @@
-//B - 754 
+//B - Ruined Square
 
 "use strict";
 
 const main = (lines) => {
-  const S = lines[0];
-  const nums = [];
-
-  for(let i=0; i<S.length-2; i++){
-    nums.push(S[i] + S[i+1] + S[i+2]);
-  }
-  let ans = 99999;
-  for(let i=0; i<nums.length; i++){
-    ans = Math.min(Math.abs(parseInt(nums[i]) - 753), ans)
-  }
-  console.log(ans);
+  const [x1, y1, x2, y2] = lines[0].split(" ").map(Number);
+  let dx = x2 - x1;
+  let dy = y2 - y1;
+  console.log((x2-dy)+" "+(y2+dx)+" "+(x1-dy)+" "+(y1+dx));
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
