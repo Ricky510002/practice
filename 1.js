@@ -1,12 +1,19 @@
-//B - Ruined Square
+//B - Varied
 
 "use strict";
 
 const main = (lines) => {
-  const [x1, y1, x2, y2] = lines[0].split(" ").map(Number);
-  let dx = x2 - x1;
-  let dy = y2 - y1;
-  console.log((x2-dy)+" "+(y2+dx)+" "+(x1-dy)+" "+(y1+dx));
+  const arr = lines[0].split("");
+
+  if (existsSameValue(arr)) {
+    console.log("no");
+  } else {
+    console.log("yes");
+  }
+  function existsSameValue(a) {
+    var s = new Set(a);
+    return s.size != a.length;
+  }
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
