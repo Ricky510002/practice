@@ -1,19 +1,18 @@
-// D - Caracal vs Monster
+// B - Count Balls
 
 "use strict";
 
 const main = (lines) => {
-  const h = Number(lines[0]);
+  const [N, A, B] = lines[0].split(" ").map(BigInt);
 
-  const solve = (n) => {
-    if(n <= 0) return 0;
-    if(n === 1) return n;
-    if(n === 2) return 3;
-
-    return solve(Math.floor(n/2)) * 2 + 1
+  let ans = (N / (A + B)) * A;
+  let C = N % (A + B);
+  if(C < A){
+    ans += C;
+  }else {
+    ans += A;
   }
-
-  console.log(solve(Math.floor(h/2) * 2 + 1));
+  console.log(ans.toString());
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
