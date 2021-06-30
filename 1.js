@@ -1,18 +1,19 @@
-// B - Count Balls
+//B - 754 
 
 "use strict";
 
 const main = (lines) => {
-  const [N, A, B] = lines[0].split(" ").map(BigInt);
+  const S = lines[0];
+  const nums = [];
 
-  let ans = (N / (A + B)) * A;
-  let C = N % (A + B);
-  if(C < A){
-    ans += C;
-  }else {
-    ans += A;
+  for(let i=0; i<S.length-2; i++){
+    nums.push(S[i] + S[i+1] + S[i+2]);
   }
-  console.log(ans.toString());
+  let ans = 99999;
+  for(let i=0; i<nums.length; i++){
+    ans = Math.min(Math.abs(parseInt(nums[i]) - 753), ans)
+  }
+  console.log(ans);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
