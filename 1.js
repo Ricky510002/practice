@@ -2,16 +2,21 @@
 "use strict";
 
 const main = (lines) => {
-  const [n, m] = lines[0].split(" ").map(Number);
-  lines = lines.slice(1).filter(Boolean)
+  const [n, k, q] = lines[0].split(" ").map(Number);
 
-  const l = lines.map((x) => Number(x.split(" ")[0]));
-  const r = lines.map((x) => Number(x.split(" ")[1]));
+  let arr = Array(n).fill(k - q);
 
-  const min = Math.max(...l);
-  const max = Math.min(...r);
+  for (let i = 1; i < q + 1; i++) {
+    arr[Number(lines[i]) - 1]++;
+  }
 
-  console.log(Math.max(max - min + 1, 0));
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > 0) {
+      console.log("Yes");
+    } else {
+      console.log("No");
+    }
+  }
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
