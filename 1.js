@@ -1,24 +1,16 @@
-//B - Increment Decrement
+//B - Postal Code
 
 "use strict";
 
 const main = (lines) => {
-  const n = Number(lines[0]);
-  const arr = lines[1].split("");
+  let [a, b] = lines[0].split(" ").map(Number);
+  let s = lines[1];
 
-  let cnt = 0;
-  let ans = 0;
-  for (let i = 0; i < n; i++) {
-    if (arr[i] === "I") {
-      cnt++;
-    } else if (arr[i] === "D") {
-      cnt--;
-    }
-    if (ans < cnt) {
-      ans = cnt;
-    }
-  }
-  console.log(ans);
+  let r = new RegExp(`^\\d{${a}}-\\d{${b}}$`);
+
+  // 指定された正規表現と一致しているかtest()で確かめる
+
+  console.log(r.test(s) ? "Yes" : "No");
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
