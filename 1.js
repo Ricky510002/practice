@@ -1,22 +1,18 @@
-//C - Prison
+//B - Five Dishes  
 "use strict";
 
 const main = (lines) => {
-  const [n, k, q] = lines[0].split(" ").map(Number);
-
-  let arr = Array(n).fill(k - q);
-
-  for (let i = 1; i < q + 1; i++) {
-    arr[Number(lines[i]) - 1]++;
+  const times = lines.map(Number);
+  const ceilTimes = times.map(x => Math.ceil(x /10) * 10)
+  const sum = (a, b) => a + b;
+  let ans = 9999;
+  for(let i=0; i<5; i++){
+    let sumTimes = 0;
+    sumTimes += ceilTimes.reduce(sum) - ceilTimes[i];
+    sumTimes += times[i];
+    ans = Math.min(ans, sumTimes);
   }
-
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i] > 0) {
-      console.log("Yes");
-    } else {
-      console.log("No");
-    }
-  }
+  console.log(ans);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
