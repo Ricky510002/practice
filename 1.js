@@ -1,16 +1,20 @@
-//B - Postal Code
+//B - Not Found
 
 "use strict";
 
 const main = (lines) => {
-  let [a, b] = lines[0].split(" ").map(Number);
-  let s = lines[1];
+  const s = lines[0];
 
-  let r = new RegExp(`^\\d{${a}}-\\d{${b}}$`);
+  let base = "abcdefghijklmnopqrstuvwxyz".split("");
 
-  // 指定された正規表現と一致しているかtest()で確かめる
+  let ans = "None";
 
-  console.log(r.test(s) ? "Yes" : "No");
+  base.some((x) => {
+    if (!s.includes(x)) {
+      return (ans = x);
+    }
+  });
+  console.log(ans);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
