@@ -1,18 +1,17 @@
-//C - Exception Handling
+//A - Range Product
 "use strict";
 
 const main = (lines) => {
-  lines.shift();
-  let a = lines.map((val) => parseInt(val, 10));
-  
-  let x = [...a];
-  x.sort((a, b) => b - a);
-  
-  for (let i = 0; i < a.length; i++) {
-    if (a[i] != x[0]) {
-      console.log(x[0]);
+  const [a, b] = lines[0].split(" ").map(Number);
+  if (0 < a && a <= b) {
+    console.log("Positive");
+  } else if (a <= 0 && 0 <= b) {
+    console.log("Zero");
+  } else if (a <= b && b < 0) {
+    if ((b - a + 1) % 2 === 0) {
+      console.log("Positive");
     } else {
-      console.log(x[1]);
+      console.log("Negative");
     }
   }
 };
