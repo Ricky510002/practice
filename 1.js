@@ -1,18 +1,20 @@
-//B - Five Dishes  
+//C - Exception Handling
 "use strict";
 
 const main = (lines) => {
-  const times = lines.map(Number);
-  const ceilTimes = times.map(x => Math.ceil(x /10) * 10)
-  const sum = (a, b) => a + b;
-  let ans = 9999;
-  for(let i=0; i<5; i++){
-    let sumTimes = 0;
-    sumTimes += ceilTimes.reduce(sum) - ceilTimes[i];
-    sumTimes += times[i];
-    ans = Math.min(ans, sumTimes);
+  lines.shift();
+  let a = lines.map((val) => parseInt(val, 10));
+  
+  let x = [...a];
+  x.sort((a, b) => b - a);
+  
+  for (let i = 0; i < a.length; i++) {
+    if (a[i] != x[0]) {
+      console.log(x[0]);
+    } else {
+      console.log(x[1]);
+    }
   }
-  console.log(ans);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
