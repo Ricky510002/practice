@@ -1,20 +1,17 @@
-//B - Not Found
-
+//C - Prison
 "use strict";
 
 const main = (lines) => {
-  const s = lines[0];
+  const [n, m] = lines[0].split(" ").map(Number);
+  lines = lines.slice(1).filter(Boolean)
 
-  let base = "abcdefghijklmnopqrstuvwxyz".split("");
+  const l = lines.map((x) => Number(x.split(" ")[0]));
+  const r = lines.map((x) => Number(x.split(" ")[1]));
 
-  let ans = "None";
+  const min = Math.max(...l);
+  const max = Math.min(...r);
 
-  base.some((x) => {
-    if (!s.includes(x)) {
-      return (ans = x);
-    }
-  });
-  console.log(ans);
+  console.log(Math.max(max - min + 1, 0));
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
