@@ -1,21 +1,20 @@
-//B - 美しい文字列
+//C - Coloring Colorfully
 "use strict";
 
 const main = (lines) => {
-  const w = lines[0].split("");
-  let ans = "Yes";
-
-  for (let i = 0; i < w.length; i++) {
-    let cnt = 0;
-    w.forEach((e) => {
-      if (w[i] === e) cnt++;
-    });
-    if (cnt % 2 === 1) {
-      ans = "No";
-      break;
-    }
+  const s = lines[0].split("");
+  let cnt1 = 0;
+  for (let i = 0; i < s.length; i++) {
+    const c = i % 2 ? "0" : "1";
+    if (s[i] !== c) cnt1++;
   }
-  console.log(ans);
+  let cnt2 = 0;
+  for (let i = 0; i < s.length; i++) {
+    const c = i % 2 ? "1" : "0";
+    if (s[i] !== c) cnt2++;
+  }
+
+  console.log(Math.min(cnt1, cnt2));
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
