@@ -1,22 +1,18 @@
-//B - Foods Loved by Everyone
+//B - 美しい文字列
 "use strict";
 
 const main = (lines) => {
-  const [N, M] = lines[0].split(" ").map(Number);
+  const w = lines[0].split("");
+  let ans = "Yes";
 
-  const counts = Array(M).fill(0);
-
-  for (let i = 0; i < N; i++) {
-    const likes = lines[i + 1].split(" ").map((x) => parseInt(x));
-    for (let i = 0; i < likes[0]; i++) {
-      counts[likes[i + 1] - 1]++;
-    }
-  }
-
-  let ans = 0;
-  for (let i = 0; i < M; i++) {
-    if (counts[i] === N) {
-      ans++;
+  for (let i = 0; i < w.length; i++) {
+    let cnt = 0;
+    w.forEach((e) => {
+      if (w[i] === e) cnt++;
+    });
+    if (cnt % 2 === 1) {
+      ans = "No";
+      break;
     }
   }
   console.log(ans);
