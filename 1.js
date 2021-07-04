@@ -1,20 +1,22 @@
-//B - Lucas Number
+//C - Lower
 "use strict";
 
 const main = (lines) => {
   const n = Number(lines[0]);
-  const arr = [];
+  let h = lines[1].split(" ").map(Number);
 
-  for (let i = 0; i <= n; i++) {
-    if (i === 0) {
-      arr.push(BigInt(2, 10));
-    } else if (i === 1) {
-      arr.push(BigInt(1, 10));
+  let ans = 0,
+    tmp = 0;
+  for (let i = 0; i < n; i++) {
+    let cnt = 0;
+    if (h[i + 1] - h[i] <= 0) {
+      tmp++;
     } else {
-      arr.push(BigInt(arr[i - 2], 10) + BigInt(arr[i - 1], 10));
+      tmp = 0;
     }
+    ans = Math.max(ans, tmp)
   }
-  console.log(arr[n].toString());
+  console.log(ans)
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
