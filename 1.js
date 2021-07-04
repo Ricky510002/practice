@@ -1,17 +1,14 @@
-//B - Picture Frame
+//
 "use strict";
 
 const main = (lines) => {
-  const [h, w] = lines[0].split(" ").map(Number);
-  let wFrame = "##";
-  for (let i = 0; i < w; i++) {
-    wFrame += "#";
+  const [a, b] = lines[0].split(" ").map(Number);
+  let x = a * 6;
+  if (b <= x && b !== 1) {
+    console.log("Yes");
+  } else {
+    console.log("No");
   }
-  console.log(wFrame);
-  for (let i = 0; i < h; i++) {
-    console.log("#" + lines[i + 1] + "#");
-  }
-  console.log(wFrame);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
