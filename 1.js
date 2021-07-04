@@ -1,22 +1,17 @@
-//C - Lower
+//B - Picture Frame
 "use strict";
 
 const main = (lines) => {
-  const n = Number(lines[0]);
-  let h = lines[1].split(" ").map(Number);
-
-  let ans = 0,
-    tmp = 0;
-  for (let i = 0; i < n; i++) {
-    let cnt = 0;
-    if (h[i + 1] - h[i] <= 0) {
-      tmp++;
-    } else {
-      tmp = 0;
-    }
-    ans = Math.max(ans, tmp)
+  const [h, w] = lines[0].split(" ").map(Number);
+  let wFrame = "##";
+  for (let i = 0; i < w; i++) {
+    wFrame += "#";
   }
-  console.log(ans)
+  console.log(wFrame);
+  for (let i = 0; i < h; i++) {
+    console.log("#" + lines[i + 1] + "#");
+  }
+  console.log(wFrame);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
