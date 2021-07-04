@@ -1,17 +1,23 @@
-//B - Palindromic Numbers
+//A - Fairness
 "use strict";
 
 const main = (lines) => {
-  const [a, b] = lines[0].split(" ").map(Number);
-  let ans = 0;
-  for (let i = a; i <= b; i++) {
-    const n = i.toString().split("").reverse().join("");
-    if (n === i.toString()) {
-      ans++;
+  let [a, b] = lines[0].split(" ").map(Number);
+  let k = Number.parseInt(lines[0].slice(-1));
+
+  if (k % 2 === 0) {
+    if (a - b > Math.abs(10 ** 18)) {
+      console.log("Unfair");
+    } else {
+      console.log(a - b);
+    }
+  } else {
+    if (b - a > Math.abs(10 ** 18)) {
+      console.log("Unfair");
+    } else {
+      console.log(b - a);
     }
   }
-
-  console.log(ans);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
