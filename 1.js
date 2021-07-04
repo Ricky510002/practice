@@ -1,23 +1,20 @@
-//A - Fairness
+//B - Lucas Number
 "use strict";
 
 const main = (lines) => {
-  let [a, b] = lines[0].split(" ").map(Number);
-  let k = Number.parseInt(lines[0].slice(-1));
+  const n = Number(lines[0]);
+  const arr = [];
 
-  if (k % 2 === 0) {
-    if (a - b > Math.abs(10 ** 18)) {
-      console.log("Unfair");
+  for (let i = 0; i <= n; i++) {
+    if (i === 0) {
+      arr.push(BigInt(2, 10));
+    } else if (i === 1) {
+      arr.push(BigInt(1, 10));
     } else {
-      console.log(a - b);
-    }
-  } else {
-    if (b - a > Math.abs(10 ** 18)) {
-      console.log("Unfair");
-    } else {
-      console.log(b - a);
+      arr.push(BigInt(arr[i - 2], 10) + BigInt(arr[i - 1], 10));
     }
   }
+  console.log(arr[n].toString());
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
