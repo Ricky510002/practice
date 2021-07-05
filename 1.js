@@ -1,10 +1,11 @@
-//
+//A - Rolling Dice
 "use strict";
 
 const main = (lines) => {
   const [a, b] = lines[0].split(" ").map(Number);
   let x = a * 6;
-  if (b <= x && b !== 1) {
+  
+  if (x >= b && a * 1 <= b) {
     console.log("Yes");
   } else {
     console.log("No");
