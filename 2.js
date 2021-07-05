@@ -1,32 +1,21 @@
-//
+//C - Fair Candy Distribution  
 "use strict";
 
 const main = (lines) => {
-  let p = Number(lines[0]);
-  const yen = [];
+  const [n, k] = lines[0].split(" ").map(BigInt);
+  let arr = lines[1].split(" ").map(BigInt);
+  const tmp = arr.map((e) => e).sort((a, b) => (a - b < 0 ? -1 : 1));
+  const give = k / n;
+  let ans = new Array(Number(n)).fill(give);
 
-  function factorialize(k) {
-    let j = 1;
-    for (let i = 1; i <= k; i++) {
-      j *= i;
-    }
-    return j;
+  const b = tmp[(k % n) - 1n];
+  for (let i = 0; i < n; i++) {
+    if (arr[i] <= b) ans[i]++;
   }
 
-  for (let i = 1; i <= 10; i++) {
-    yen.push(factorialize(i));
+  for (let i = 0; i < ans.length; i++) {
+    console.log(ans[i].toString());
   }
-  let ans = 0;
-
-  for (let i = 9; i > -1; i--) {
-    if (p >= yen[i]) {
-      let x = p / yen[i];
-      let y = p % yen[i];
-      p = y;
-      ans += Math.floor(x);
-    }
-  }
-  console.log(ans);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
