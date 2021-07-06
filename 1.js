@@ -1,14 +1,16 @@
-//A - Rolling Dice
+//B - Comparison
 "use strict";
 
 const main = (lines) => {
-  const [a, b] = lines[0].split(" ").map(Number);
-  let x = a * 6;
+  const a = Number(lines[0]);
+  const b = Number(lines[1]);
   
-  if (x >= b && a * 1 <= b) {
-    console.log("Yes");
-  } else {
-    console.log("No");
+  if (a > b) {
+    console.log("GREATER");
+  } else if(a < b){
+    console.log("LESS");
+  }else{
+    console.log("EQUAL");
   }
 };
 
