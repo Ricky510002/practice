@@ -1,18 +1,26 @@
-//C - Maximal Value
+//B - Counting Roads
 "use strict";
 
 const main = (lines) => {
-  const n = Number(lines[0]);
-  const b = lines[1].split(" ").map(Number);
-  let a = [];
-  a[0] = b[0];
-  a[n - 1] = b[n - 2];
-
-  for (let i = 1; i < n - 1; i++) {
-    a[i] = Math.min(b[i - 1], b[i]);
+  lines = lines.map((item) => item.split(" ").map(Number));
+  let N = lines[0][0];
+  let M = lines[0][1];
+  let AB = lines.slice(1);
+  let cnt = 0;
+  let ans = [];
+  for (let i = 1; i <= N; i++) {
+    for (let j = 0; j < M; j++) {
+      if (i === AB[j][0] || i === AB[j][1]) {
+        cnt++;
+      }
+    }
+    ans.push(cnt);
+    cnt = 0;
   }
-  a = a.reduce((x, y) => x + y);
-  console.log(a);
+
+  for (let i = 0; i < ans.length; i++) {
+    console.log(ans[i]);
+  }
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
