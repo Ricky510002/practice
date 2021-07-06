@@ -1,17 +1,18 @@
-//B - Comparison
+//C - Maximal Value
 "use strict";
 
 const main = (lines) => {
-  const a = Number(lines[0]);
-  const b = Number(lines[1]);
-  
-  if (a > b) {
-    console.log("GREATER");
-  } else if(a < b){
-    console.log("LESS");
-  }else{
-    console.log("EQUAL");
+  const n = Number(lines[0]);
+  const b = lines[1].split(" ").map(Number);
+  let a = [];
+  a[0] = b[0];
+  a[n - 1] = b[n - 2];
+
+  for (let i = 1; i < n - 1; i++) {
+    a[i] = Math.min(b[i - 1], b[i]);
   }
+  a = a.reduce((x, y) => x + y);
+  console.log(a);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
