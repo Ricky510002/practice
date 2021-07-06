@@ -1,26 +1,23 @@
-//B - Counting Roads
+//B - Shiritori
 "use strict";
 
 const main = (lines) => {
-  lines = lines.map((item) => item.split(" ").map(Number));
-  let N = lines[0][0];
-  let M = lines[0][1];
-  let AB = lines.slice(1);
-  let cnt = 0;
-  let ans = [];
-  for (let i = 1; i <= N; i++) {
-    for (let j = 0; j < M; j++) {
-      if (i === AB[j][0] || i === AB[j][1]) {
-        cnt++;
-      }
-    }
-    ans.push(cnt);
-    cnt = 0;
-  }
+  const n = Number(lines[0]);
+  let w = lines.slice(1);
+  // setには重複する値が格納できない
+  let check = Array.from(new Set(w));
 
-  for (let i = 0; i < ans.length; i++) {
-    console.log(ans[i]);
+  if (w.length !== check.length) {
+    console.log("No");
+    return;
   }
+  for (let i = 1; i < n; i++) {
+    if (w[i - 1].slice(-1) !== w[i].slice(0, 1)) {
+      console.log("No");
+      return;
+    }
+  }
+  console.log("Yes");
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
