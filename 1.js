@@ -1,23 +1,26 @@
-//B - Shiritori
+//B - Good Distance
 "use strict";
 
 const main = (lines) => {
-  const n = Number(lines[0]);
-  let w = lines.slice(1);
-  // setには重複する値が格納できない
-  let check = Array.from(new Set(w));
+  lines = lines.map((x) => x.split(" ").map(Number));
+  let N = lines[0][0];
+  let D = lines[0][1];
+  let X = lines.slice(1);
+  let cnt = 0;
+  let s = 0;
 
-  if (w.length !== check.length) {
-    console.log("No");
-    return;
-  }
-  for (let i = 1; i < n; i++) {
-    if (w[i - 1].slice(-1) !== w[i].slice(0, 1)) {
-      console.log("No");
-      return;
+  for (let i = 0; i < N; i++) {
+    for (let j = i + 1; j < N; j++) {
+      for (let k = 0; k < D; k++) {
+        s += Math.pow(X[i][k] - X[j][k], 2);
+      }
+      if (Number.isInteger(Math.sqrt(s)) == true) {
+        cnt++;
+      }
+      s = 0;
     }
   }
-  console.log("Yes");
+  console.log(cnt);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));

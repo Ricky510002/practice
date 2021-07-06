@@ -1,8 +1,8 @@
-4
-hoge
-english
-hoge
-enigma
+3 2
+1 2
+5 5
+-2 8
+
 
 
 
