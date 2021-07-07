@@ -1,15 +1,17 @@
-//C - Tax Increase
+//B - Palace
 "use strict";
 
 const main = (lines) => {
-  const [a, b] = lines[0].split(" ").map(Number);
-  for (let i = 1; i <= 1000; i++) {
-    if (Math.floor(i * 0.08) === a && Math.floor(i * 0.1) === b) {
-      console.log(i);
-      return;
-    }
+  const N = Number(lines[0]);
+  const [T, A] = lines[1].split(" ").map(Number);
+  const H = lines[2].split(" ").map(Number);
+
+  let c = [];
+  for (let i = 0; i < N; i++) {
+    c.push(Math.abs(A - (T - H[i] * 0.006)));
   }
-  console.log(-1);
+  let min = Math.min(...c);
+  console.log(c.indexOf(min) + 1);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
