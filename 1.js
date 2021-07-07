@@ -1,26 +1,14 @@
-//B - Good Distance
+//B - Small and Large Integers
 "use strict";
 
 const main = (lines) => {
-  lines = lines.map((x) => x.split(" ").map(Number));
-  let N = lines[0][0];
-  let D = lines[0][1];
-  let X = lines.slice(1);
-  let cnt = 0;
-  let s = 0;
+  const [a, b, k] = lines[0].split(" ").map(Number);
 
-  for (let i = 0; i < N; i++) {
-    for (let j = i + 1; j < N; j++) {
-      for (let k = 0; k < D; k++) {
-        s += Math.pow(X[i][k] - X[j][k], 2);
-      }
-      if (Number.isInteger(Math.sqrt(s)) == true) {
-        cnt++;
-      }
-      s = 0;
+  for (let i = a; i <= b; i++) {
+    if (i < a + k || i > b - k) {
+      console.log(i);
     }
   }
-  console.log(cnt);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
