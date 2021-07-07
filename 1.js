@@ -1,9 +1,19 @@
-//B - AcCepted
+//B - Contest with Drinks Easy
 "use strict";
 
 const main = (lines) => {
-  let s = lines[0].match(/^A[a-z]+C[a-z]+$/);
-  console.log(s==null?"WA":"AC");
+  const N = Number(lines[0]);
+  const M = Number(lines[2]);
+
+  for (let i = 0; i < M; i++) {
+    let T = lines[1].split(" ").map(Number);
+    let line = lines[i + 3].split(" ").map(Number);
+    let p = line[0];
+    let x = line[1];
+    T[p - 1] = x;
+    let ans = T.reduce((sum, element) => sum + element, 0);
+    console.log(ans);
+  }
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
