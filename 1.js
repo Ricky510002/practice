@@ -1,21 +1,16 @@
-//D - Brick Break
+//B - ∵∴∵
 "use strict";
 
 const main = (lines) => {
-  let N = Number(lines[0]);
-  let a = lines[1].split(" ").map(Number);
-  let cnt = 0;
+  const E = lines[0].split("");
+  const O = lines[1].split("");
+  let ans = "";
 
-  for (let i = 1; i < N + 1; i++) {
-    if (a[i - 1] !== i - cnt) {
-      cnt++;
-    }
+  for (let i = 0; i < E.length; i++) {
+    ans += E[i];
+    if (i < O.length) ans += O[i];
   }
-  if (cnt == N) {
-    console.log(-1);
-  } else {
-    console.log(cnt);
-  }
+  console.log(ans);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
