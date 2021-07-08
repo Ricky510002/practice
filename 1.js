@@ -1,16 +1,16 @@
-//B - ∵∴∵
+//B - A to Z String
 "use strict";
 
 const main = (lines) => {
-  const E = lines[0].split("");
-  const O = lines[1].split("");
-  let ans = "";
-
-  for (let i = 0; i < E.length; i++) {
-    ans += E[i];
-    if (i < O.length) ans += O[i];
+  const s = lines[0].split("");
+  let a = s.indexOf("A");
+  let z = 0;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] == "Z") {
+      z = i;
+    }
   }
-  console.log(ans);
+  console.log(z - a + 1);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
