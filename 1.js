@@ -1,12 +1,21 @@
-//B - たてなが
+//D - Brick Break
 "use strict";
 
 const main = (lines) => {
-  const [H, W] = lines[0].split(" ").map(Number);
-  for (let i = 1; i <= H; i++) {
-    console.log(lines[i]);
-    console.log(lines[i]);
-  };
+  let N = Number(lines[0]);
+  let a = lines[1].split(" ").map(Number);
+  let cnt = 0;
+
+  for (let i = 1; i < N + 1; i++) {
+    if (a[i - 1] !== i - cnt) {
+      cnt++;
+    }
+  }
+  if (cnt == N) {
+    console.log(-1);
+  } else {
+    console.log(cnt);
+  }
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
