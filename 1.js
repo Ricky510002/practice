@@ -3,14 +3,20 @@
 
 const main = (lines) => {
   const s = lines[0].split("");
-  let a = s.indexOf("A");
-  let z = 0;
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] == "Z") {
-      z = i;
-    }
+
+  let S = s.includes("S");
+  let E = s.includes("E");
+  let N = s.includes("N");
+  let W = s.includes("W");
+
+  let NS = (N && S) || (!N && !S);
+  let EW = (E && W) || (!E && !W);
+
+  if (NS && EW) {
+    console.log("Yes");
+  } else {
+    console.log("No");
   }
-  console.log(z - a + 1);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
