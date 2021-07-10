@@ -1,4 +1,4 @@
-//C - Fair Candy Distribution  
+//B - Comparison
 "use strict";
 
 const main = (lines) => {
