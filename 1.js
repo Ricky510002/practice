@@ -1,22 +1,29 @@
-//B - A to Z String
+//C - Poll
 "use strict";
 
 const main = (lines) => {
-  const s = lines[0].split("");
+  const N = Number(lines.shift());
+  lines = lines.sort();
+  let counter = 0;
+  let counterMax = 0;
+  let list = [];
 
-  let S = s.includes("S");
-  let E = s.includes("E");
-  let N = s.includes("N");
-  let W = s.includes("W");
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i] === lines[i + 1]) {
+      counter++;
+    } else {
+      counter = 0;
+    }
 
-  let NS = (N && S) || (!N && !S);
-  let EW = (E && W) || (!E && !W);
-
-  if (NS && EW) {
-    console.log("Yes");
-  } else {
-    console.log("No");
+    if (counter > counterMax) {
+      list = [lines[i]];
+      counterMax = counter;
+    } else if (counter == counterMax) {
+      list.push(lines[i]);
+    }
   }
+
+  console.log(list.join("\n"));
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
