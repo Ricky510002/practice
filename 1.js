@@ -1,29 +1,30 @@
-//C - Poll
+//B - Guidebook
 "use strict";
 
 const main = (lines) => {
-  const N = Number(lines.shift());
-  lines = lines.sort();
-  let counter = 0;
-  let counterMax = 0;
-  let list = [];
+  let N = lines.shift() * 1;
 
-  for (let i = 0; i < lines.length; i++) {
-    if (lines[i] === lines[i + 1]) {
-      counter++;
-    } else {
-      counter = 0;
-    }
+  let arr = [];
 
-    if (counter > counterMax) {
-      list = [lines[i]];
-      counterMax = counter;
-    } else if (counter == counterMax) {
-      list.push(lines[i]);
-    }
+  for (let i = 0; i < N; i++) {
+    let l = lines[i].split(" ");
+    let c = l[0];
+    let s = l[1] * 1;
+    arr.push({ c: c, s: s, i: i + 1 });
   }
 
-  console.log(list.join("\n"));
+  arr.sort((a, b) => {
+    if (a.c == b.c) {
+      //文字列が同じ時は数値の高い順に
+      return b.s - a.s;
+    } else {
+      return a.c < b.c ? -1 : 1;
+    }
+  });
+
+  arr.forEach((a) => {
+    console.log(a.i);
+  });
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
