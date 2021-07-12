@@ -1,16 +1,15 @@
-//C - 100 to 105
+//B - 文字列大好きいろはちゃんイージー
 "use strict";
 
 const main = (lines) => {
-  let x = Number(lines[0]);
-  let y = x % 100;
-  let z = Math.floor(x / 100);
+  let [N, L] = lines[0].split(" ").map(Number);
+  let arr = [];
 
-  if (z * 5 < y) {
-    console.log("0");
-  } else {
-    console.log("1");
+  for (let i = 1; i < N + 1; i++) {
+    arr.push(lines[i]);
   }
+  arr.sort();
+  console.log(arr.join(""));
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
