@@ -1,30 +1,29 @@
-//B - Guidebook
+//A - Dividing a String
 "use strict";
 
 const main = (lines) => {
-  let N = lines.shift() * 1;
+  let s = lines[0];
+  let count = 0;
+  let tmp = "";
+  let current = "";
+  let resultArr = [];
 
-  let arr = [];
+  for (let j = 0; j < s.length; j++) {
+    current += s[j];
 
-  for (let i = 0; i < N; i++) {
-    let l = lines[i].split(" ");
-    let c = l[0];
-    let s = l[1] * 1;
-    arr.push({ c: c, s: s, i: i + 1 });
+    if (current === tmp) continue;
+
+    tmp = current;
+    resultArr.push(current);
+
+    current = "";
+    count += 1;
   }
 
-  arr.sort((a, b) => {
-    if (a.c == b.c) {
-      //文字列が同じ時は数値の高い順に
-      return b.s - a.s;
-    } else {
-      return a.c < b.c ? -1 : 1;
-    }
-  });
+  let result = resultArr.length;
 
-  arr.forEach((a) => {
-    console.log(a.i);
-  });
+  console.log(result);
+  return result;
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
