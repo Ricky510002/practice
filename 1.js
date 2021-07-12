@@ -1,29 +1,16 @@
-//A - Dividing a String
+//C - 100 to 105
 "use strict";
 
 const main = (lines) => {
-  let s = lines[0];
-  let count = 0;
-  let tmp = "";
-  let current = "";
-  let resultArr = [];
+  let x = Number(lines[0]);
+  let y = x % 100;
+  let z = Math.floor(x / 100);
 
-  for (let j = 0; j < s.length; j++) {
-    current += s[j];
-
-    if (current === tmp) continue;
-
-    tmp = current;
-    resultArr.push(current);
-
-    current = "";
-    count += 1;
+  if (z * 5 < y) {
+    console.log("0");
+  } else {
+    console.log("1");
   }
-
-  let result = resultArr.length;
-
-  console.log(result);
-  return result;
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
