@@ -1,15 +1,18 @@
-//B - 文字列大好きいろはちゃんイージー
+//B - Exponential
 "use strict";
 
 const main = (lines) => {
-  let [N, L] = lines[0].split(" ").map(Number);
-  let arr = [];
-
-  for (let i = 1; i < N + 1; i++) {
-    arr.push(lines[i]);
+  let x = Number(lines[0]);
+  let ans = 1;
+  for (let i = 1; i <= x; i++) {
+    for (let j = 2; j <= x; j++) {
+      let t = Math.pow(i, j);
+      if (t <= x) {
+        ans = Math.max(ans, t);
+      }
+    }
   }
-  arr.sort();
-  console.log(arr.join(""));
+  console.log(ans);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
