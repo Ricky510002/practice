@@ -1,18 +1,20 @@
-//B - Exponential
+//A - Digit Sum 2
 "use strict";
 
 const main = (lines) => {
-  let x = Number(lines[0]);
-  let ans = 1;
-  for (let i = 1; i <= x; i++) {
-    for (let j = 2; j <= x; j++) {
-      let t = Math.pow(i, j);
-      if (t <= x) {
-        ans = Math.max(ans, t);
-      }
-    }
-  }
-  console.log(ans);
+  var N = lines[0];
+	var l = N.length - 1;
+	var lt = parseInt(N.substr(0,1));
+	var rt = N.substr(1).match(/9/g);
+	var ans;
+	if(rt) rt = rt.length;
+	else rt = -1;
+	
+	if(l === 0)ans = parseInt(N);
+	else if(rt === l) ans = l * 9 + lt;
+	else ans = l * 9 + lt - 1;
+	
+	console.log(ans);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
