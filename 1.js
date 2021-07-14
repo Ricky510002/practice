@@ -1,20 +1,12 @@
-//A - Digit Sum 2
+//C - Half and Half
 "use strict";
 
 const main = (lines) => {
-  var N = lines[0];
-	var l = N.length - 1;
-	var lt = parseInt(N.substr(0,1));
-	var rt = N.substr(1).match(/9/g);
-	var ans;
-	if(rt) rt = rt.length;
-	else rt = -1;
-	
-	if(l === 0)ans = parseInt(N);
-	else if(rt === l) ans = l * 9 + lt;
-	else ans = l * 9 + lt - 1;
-	
-	console.log(ans);
+  let [A, B, C, X, Y] = lines[0].split(" ").map(Number);
+  let price1 = A * X + B * Y;
+  let price2 = 2 * C * Math.min(X, Y) + Math.abs(X - Y) * (X - Y > 0 ? A : B);
+  let price3 = 2 * C * Math.max(X, Y);
+  console.log(Math.min(price1, price2, price3));
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
