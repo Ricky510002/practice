@@ -1,19 +1,26 @@
-//C - Christmas Eve
+//C - Welcome to AtCoder
 "use strict";
 
 const main = (lines) => {
-  const [N, K] = lines[0].split(" ").map(Number);
-  lines.shift();
-  const sorted = lines.sort((a, b) => a - b);
+  const [n, m] = lines[0].split(" ").map(Number);
+  const q = lines.slice(1);
 
-  let min = 10000000000;
-  for (let i = 0; i <= N - K; i++) {
-    if (min > sorted[i + K - 1] - sorted[i]) {
-      min = sorted[i + K - 1] - sorted[i];
+  const his = {};
+  let ans = 0;
+  let penalty = 0;
+
+  for (let i = 0; i < m; i++) {
+    const [a, b] = q[i].split(" ");
+    if (b === "WA" && his[a] !== "AC") his[a] = ~~his[a] + 1;
+
+    if (b === "AC" && his[a] !== "AC") {
+      penalty += ~~his[a];
+      ans++;
+      his[a] = "AC";
     }
   }
 
-  console.log(min);
+  return console.log(ans, penalty);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
