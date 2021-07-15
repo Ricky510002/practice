@@ -1,26 +1,19 @@
-//C - Welcome to AtCoder
+//A - AtCoder Group Contest
 "use strict";
 
 const main = (lines) => {
-  const [n, m] = lines[0].split(" ").map(Number);
-  const q = lines.slice(1);
-
-  const his = {};
+  let n = Number(lines[0]);
+  let a = lines[1].split(" ").map(Number);
   let ans = 0;
-  let penalty = 0;
+  a.sort((a, b) => a - b);
 
-  for (let i = 0; i < m; i++) {
-    const [a, b] = q[i].split(" ");
-    if (b === "WA" && his[a] !== "AC") his[a] = ~~his[a] + 1;
-
-    if (b === "AC" && his[a] !== "AC") {
-      penalty += ~~his[a];
-      ans++;
-      his[a] = "AC";
+  for (let i = 0; i < n * 3; i++) {
+    if (i >= n) {
+      if ((i - n) % 2 == 0) ans = ans + parseInt(a[i], 10);
     }
   }
 
-  return console.log(ans, penalty);
+  console.log(ans);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
