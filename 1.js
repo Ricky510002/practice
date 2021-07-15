@@ -1,19 +1,17 @@
-//C - Build Stairs
+//C - Walk on Multiplication Table
 "use strict";
 
 const main = (lines) => {
   const N = Number(lines[0]);
-  const H = lines[1].split(" ").map(Number);
 
-  let max = 0;
-  for (let i = 0; i < N; i++) {
-    if (max - H[i] > 1) {
-      console.log("No");
-      return;
+  let min = [];
+  for (let i = 1; i <= Math.sqrt(N); i++) {
+    if (N % i === 0) {
+      min.push(i - 1 + (N / i - 1));
     }
-    max = Math.max(max, H[i]);
   }
-  console.log("Yes");
+
+  console.log(Math.min(...min));
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
