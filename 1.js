@@ -1,17 +1,24 @@
-//C - Walk on Multiplication Table
+//C - *3 or /2
 "use strict";
 
 const main = (lines) => {
-  const N = Number(lines[0]);
+  const N = parseInt(lines[0])
+  const A = lines[1].split(" ").map((v) => parseInt(v));
 
-  let min = [];
-  for (let i = 1; i <= Math.sqrt(N); i++) {
-    if (N % i === 0) {
-      min.push(i - 1 + (N / i - 1));
+  let ans = A.reduce((a, c) => {
+    let cnt = 0;
+    while (true) {
+      if (c % 2 === 0) {
+        c /= 2;
+        cnt++;
+      } else {
+        break;
+      }
     }
-  }
+    return a + cnt;
+  }, 0);
 
-  console.log(Math.min(...min));
+  console.log(ans);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
