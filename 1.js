@@ -1,16 +1,18 @@
-//A - Ice Tea Store
+//C - Candies
 "use strict";
 
 const main = (lines) => {
-  let [Q, H, S, D] = lines[0].split(" ").map(Number);
-  let N = Number(lines[1]);
+  const N = Number(lines[0]);
+  const a1 = lines[1].split(" ").map(Number);
+  const a2 = lines[2].split(" ").map(Number);
 
-  let ans =
-    N % 2 == 0
-      ? (Math.min(Math.min(Math.min(Q * 8, H * 4), S * 2), D) * N) / 2
-      : Math.min(Math.min(Q * 4, H * 2), S) +
-        (Math.min(Math.min(Math.min(Q * 8, H * 4), S * 2), D) * (N - 1)) / 2;
+  let ans = 0;
+  for (let i = 0; i < N; i++) {
+    const upper = a1.slice(0, i + 1).reduce((p, c) => p + c);
+    const lower = a2.slice(i).reduce((p, c) => p + c);
 
+    ans = Math.max(ans, upper + lower);
+  }
   console.log(ans);
 };
 
