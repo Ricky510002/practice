@@ -1,22 +1,15 @@
-//C - *3 or /2
+//A - Ice Tea Store
 "use strict";
 
 const main = (lines) => {
-  const N = parseInt(lines[0])
-  const A = lines[1].split(" ").map((v) => parseInt(v));
+  let [Q, H, S, D] = lines[0].split(" ").map(Number);
+  let N = Number(lines[1]);
 
-  let ans = A.reduce((a, c) => {
-    let cnt = 0;
-    while (true) {
-      if (c % 2 === 0) {
-        c /= 2;
-        cnt++;
-      } else {
-        break;
-      }
-    }
-    return a + cnt;
-  }, 0);
+  let ans =
+    N % 2 == 0
+      ? (Math.min(Math.min(Math.min(Q * 8, H * 4), S * 2), D) * N) / 2
+      : Math.min(Math.min(Q * 4, H * 2), S) +
+        (Math.min(Math.min(Math.min(Q * 8, H * 4), S * 2), D) * (N - 1)) / 2;
 
   console.log(ans);
 };
