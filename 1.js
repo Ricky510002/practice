@@ -1,19 +1,20 @@
-//C - Candies
+//C - City Savers
 "use strict";
 
 const main = (lines) => {
   const N = Number(lines[0]);
-  const a1 = lines[1].split(" ").map(Number);
-  const a2 = lines[2].split(" ").map(Number);
+  const a = lines[1].split(" ").map(Number);
+  const b = lines[2].split(" ").map(Number);
 
-  let ans = 0;
-  for (let i = 0; i < N; i++) {
-    const upper = a1.slice(0, i + 1).reduce((p, c) => p + c);
-    const lower = a2.slice(i).reduce((p, c) => p + c);
-
-    ans = Math.max(ans, upper + lower);
+  let count = 0;
+  for (let i = 0; i < b.length; i++) {
+    let x = Math.min(a[i], b[i]);
+    b[i] -= x;
+    let x2 = Math.min(a[i + 1], b[i]);
+    a[i + 1] -= x2;
+    count += x + x2;
   }
-  console.log(ans);
+  console.log(count);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
