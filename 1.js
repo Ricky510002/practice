@@ -1,20 +1,13 @@
-//C - City Savers
+//B - Ringo's Favorite Numbers
 "use strict";
 
 const main = (lines) => {
-  const N = Number(lines[0]);
-  const a = lines[1].split(" ").map(Number);
-  const b = lines[2].split(" ").map(Number);
+  let [D, N] = lines[0].split(" ").map(Number);
 
-  let count = 0;
-  for (let i = 0; i < b.length; i++) {
-    let x = Math.min(a[i], b[i]);
-    b[i] -= x;
-    let x2 = Math.min(a[i + 1], b[i]);
-    a[i + 1] -= x2;
-    count += x + x2;
+  if (N === 100) {
+    N = 101;
   }
-  console.log(count);
+  console.log(100 ** D * N);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
