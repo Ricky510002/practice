@@ -1,21 +1,24 @@
-//B - Can you buy them all?
+//Blood Pressure
 "use strict";
 
 const main = (lines) => {
-  const [n, x] = lines[0].split(" ").map(Number);
-  let a = lines[1].split(" ").map(Number);
+  let H = 0;
+  let B2 = 0;
+  let B3 = 0;
+  let HR = 0;
 
-  let total = 0;
-  for (let i = 0; i < n; i++) {
-    if (i % 2 === 0) {
-      total += a[i];
-    } else {
-      let a2 = a[i] - 1;
-      total += a2;
+  for (let i = 0; i < 4; i++) {
+    if (lines[i] === "H") {
+      H++;
+    } else if (lines[i] === "2B") {
+      B2++;
+    } else if (lines[i] === "3B") {
+      B3++;
+    } else if (lines[i] === "HR") {
+      HR++;
     }
   }
-
-  if (total <= x) {
+  if (H === 1 && B2 === 1 && B3 === 1 && HR === 1) {
     console.log("Yes");
   } else {
     console.log("No");
