@@ -1,4 +1,4 @@
-//Blood Pressure
+//Cycle Hit
 "use strict";
 
 const main = (lines) => {
