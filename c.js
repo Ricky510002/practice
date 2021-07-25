@@ -1,16 +1,27 @@
-//C - Not Equal
+//C - chokudai
 "use strict";
 
 const main = (lines) => {
-  const [[N], [...Cn]] = lines.map(a => a.split(' ').map(Number));
-	const mod = 1000000007n;
-	let ans = 1n;
-	const C = Cn.sort((a,b) => a-b);
-	for(let i=0; i<N; i++){
-		const res = BigInt(C[i]) - BigInt(i);
-		ans = ans * (res > 0n ? res : 0n) % mod;
-	}
-	console.log(ans.toString());
+  const s = lines[0];
+  const t = "chokudai";
+  const arr = Array(s.length + 1)
+    .fill()
+    .map((_) => Array(t.length + 1).fill(0));
+
+  for (var i = 0; i < s.length; i++) {
+    arr[i][0] = 1;
+  }
+
+  for (var i = 1; i < s.length + 1; i++) {
+    for (var j = 1; j < t.length + 1; j++) {
+      arr[i][j] =
+        s[i - 1] === t[j - 1]
+          ? (arr[i - 1][j - 1] + arr[i - 1][j]) % (Math.pow(10, 9) + 7)
+          : arr[i - 1][j];
+    }
+  }
+
+  console.log(arr[s.length][t.length]);
 };
 
 main(require("fs").readFileSync("c.txt", "utf8").trim().split("\n"));
