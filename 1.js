@@ -1,13 +1,18 @@
-//B - Ringo's Favorite Numbers
+//C - To Infinity
 "use strict";
 
 const main = (lines) => {
-  let [D, N] = lines[0].split(" ").map(Number);
-
-  if (N === 100) {
-    N = 101;
+  let S = lines[0].split(""); 1234
+  let K = parseInt(lines[1]); 4
+  let ans = "1";
+  for (let i = 0; i < K; i++) { 
+    let s = S[i];
+    if (i === K && s == "1") break;
+    if (s == "1") continue;
+    ans = s;
+    break;
   }
-  console.log(100 ** D * N);
+  console.log(ans);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
