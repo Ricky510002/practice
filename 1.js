@@ -2,16 +2,14 @@
 "use strict";
 
 const main = (lines) => {
-  let S = lines[0].split(""); 1234
-  let K = parseInt(lines[1]); 4
-  let ans = "1";
-  for (let i = 0; i < K; i++) { 
-    let s = S[i];
-    if (i === K && s == "1") break;
-    if (s == "1") continue;
-    ans = s;
-    break;
-  }
+  let N = Number(lines[0]);
+  let A = lines[1].split(" ").map(Number);
+
+ 
+  const ans = A.reduce((a, c) => {
+    return a + (c - 1);
+  }, 0);
+
   console.log(ans);
 };
 
