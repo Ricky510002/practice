@@ -1,16 +1,33 @@
-//C - To Infinity
+//B - Two Colors Card Game
 "use strict";
 
 const main = (lines) => {
-  let N = Number(lines[0]);
-  let A = lines[1].split(" ").map(Number);
+  const N = parseInt(lines[0]);
+  const cards = {};
+  for (let i = 0; i < N; i++) {
+    const card = lines[i + 1];
+    if (card in cards) {
+      //あればプラス１
+      cards[card]++;
+    } else {
+      cards[card] = 1;
+    }
+  }
 
- 
-  const ans = A.reduce((a, c) => {
-    return a + (c - 1);
-  }, 0);
+  const M = parseInt(lines[N + 1]);
+  for (let i = 0; i < M; i++) {
+    const card = lines[i + N + 2];
+    if (card in cards) {
+      cards[card]--;
+    } else {
+      cards[card] = -1;
+    }
+  }
 
-  console.log(ans);
+  const max = Object.keys(cards).reduce((prev, current) =>
+    cards[prev] > cards[current] ? prev : current
+  );
+  console.log(Math.max(cards[max], 0));
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
