@@ -1,33 +1,15 @@
-//B - Two Colors Card Game
+//C - Multiple Gift
 "use strict";
 
 const main = (lines) => {
-  const N = parseInt(lines[0]);
-  const cards = {};
-  for (let i = 0; i < N; i++) {
-    const card = lines[i + 1];
-    if (card in cards) {
-      //あればプラス１
-      cards[card]++;
-    } else {
-      cards[card] = 1;
-    }
+  let [x, y] = lines[0].split(" ").map(BigInt);
+  
+  let cnt = 0n;
+  while (x <= y) {
+    x *= 2n;
+    cnt += 1n;
   }
-
-  const M = parseInt(lines[N + 1]);
-  for (let i = 0; i < M; i++) {
-    const card = lines[i + N + 2];
-    if (card in cards) {
-      cards[card]--;
-    } else {
-      cards[card] = -1;
-    }
-  }
-
-  const max = Object.keys(cards).reduce((prev, current) =>
-    cards[prev] > cards[current] ? prev : current
-  );
-  console.log(Math.max(cards[max], 0));
+  console.log(Number(cnt));
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
