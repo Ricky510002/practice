@@ -1,15 +1,16 @@
-//C - Multiple Gift
+//B - Training Camp
 "use strict";
 
 const main = (lines) => {
-  let [x, y] = lines[0].split(" ").map(BigInt);
-  
-  let cnt = 0n;
-  while (x <= y) {
-    x *= 2n;
-    cnt += 1n;
+  let n = Number(lines[0]);
+  let power = 1;
+  let a = Math.pow(10, 9) + 7;
+
+  for (let i = 1; i <= n; i++) {
+    power = (power * i) % a;
   }
-  console.log(Number(cnt));
+
+  console.log(power);
 };
 
 main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
