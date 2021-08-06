@@ -1,30 +1,26 @@
-//C - Average Length
+//C - Unification
 "use strict";
 
 const main = (lines) => {
-  lines = lines.trim().split("\n");
-  let n = parseInt(lines[0], 10);
-  lines.shift();
-  let a = [];
-  for (let i = 0; i < lines.length; i++) {
-    let t = lines[i].split(" ").map((val) => parseInt(val, 10));
-    a.push(t);
-  }
+  let s = lines[0].split("").map(Number);
 
-  let sum = 0;
-  let count = 0;
-  for (let i = 0; i < n; i++) {
-    for (let j = i + 1; j < n; j++) {
-      sum += Math.sqrt((a[i][0] - a[j][0]) ** 2 + (a[i][1] - a[j][1]) ** 2);
-      count++;
+  let obj = {
+    0: 0,
+    1: 0,
+  };
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === 0) {
+      obj[0]++;
+    } else {
+      obj[1]++;
     }
   }
 
-  console.log((sum * (n - 1)) / count);
+  const ans = Math.min(obj[0], obj[1]);
+  console.log(ans * 2);
 };
 
-// main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
-main(require("fs").readFileSync("stdin.txt", "utf8"));
+main(require("fs").readFileSync("stdin.txt", "utf8").trim().split("\n"));
 
 //提出するときはこっちのファイルから読み込み
 //main(require("fs").readFileSync("/dev/stdin", "utf8").trim().split("\n"));
